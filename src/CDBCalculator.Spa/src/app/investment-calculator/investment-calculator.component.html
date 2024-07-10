@@ -1,0 +1,48 @@
+<mat-card class="investment-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Rendimento em CDB</mat-card-title>
+    <mat-card-subtitle>Informe o valor que deseja investir e quantos meses ficará investido.</mat-card-subtitle>
+  </mat-card-header>
+
+  <form [formGroup]="formularioCdb" (ngSubmit)="onSubmit()" class="investment-form">
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Valor (R$)</mat-label>
+        <input matInput formControlName="valorInicial" type="text" appCurrencyMask />
+        <mat-error *ngIf="formularioCdb.get('valorInicial')?.hasError('required')">
+          Informe o Valor.
+        </mat-error>
+        <mat-error *ngIf="formularioCdb.get('valorInicial')?.hasError('min')">
+          O Valor deve ser maior que R$ 0,01.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Quantidade em Mês</mat-label>
+        <input matInput formControlName="meses" type="number" min="0" />
+        <mat-error *ngIf="formularioCdb.get('meses')?.hasError('required')">
+          Informe quantos meses.
+        </mat-error>
+        <mat-error *ngIf="formularioCdb.get('meses')?.hasError('min')">
+          Quantidade em Mês deve ser maior que 1.
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" class="submit-button">Calcular</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
+<hr />
+
+<mat-card class="results-card" appearance="outlined" *ngIf="valorBruto && valorLiquido">
+  <mat-card-header>
+    <mat-card-title>Rendimentos em CDB</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>Valor Bruto R$: {{ valorBruto }}</p>
+    <p>Valor Líquido R$: {{ valorLiquido }}</p>
+  </mat-card-content>
+</mat-card>
