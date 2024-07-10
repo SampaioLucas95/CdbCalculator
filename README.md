@@ -29,4 +29,5 @@ npm start
 6. Acesse o frontend em:
 http://localhost:4200
 
-Observação: estamos trabalhando para subir este projeto na nuvem, com CICD, docker compose com a criação de elastic para registro de logs.
+Observação: Estamos trabalhando para subir este projeto na nuvem, com CICD, docker compose com a criação de elastic para registro de logs, 
+bem como redis para cache e políticas de rate limet, bem como ajustes no projeto frontend.
